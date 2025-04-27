@@ -11,7 +11,9 @@ services:
       - "5432:5432"
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     env_file: ./backend/.env.example
     ports:
       - "4000:4000"
@@ -19,7 +21,9 @@ services:
       - db
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     env_file: ./frontend/.env.local.example
     ports:
       - "3000:80"
