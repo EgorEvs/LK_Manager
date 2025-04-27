@@ -1,0 +1,22 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    env_file: ./backend/.env.example
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+  frontend:
+    build: ./frontend
+    env_file: ./frontend/.env.local.example
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: lk_user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: lk_db
+    ports:
+      - "5432:5432"
